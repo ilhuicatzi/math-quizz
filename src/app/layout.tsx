@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner"
+import { ThemeProvider } from "@/contexts/ThemeProvider";
+import Navbar from "@/components/navbar/Navbar";
+import SessionContexProvider from "@/contexts/SessionProvider";
 import "./globals.css";
+import 'katex/dist/katex.min.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,10 +22,28 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>){
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen font-sans antialiased text-text-primary dark:text-text-primary dark:bg-background",
+          fontSans.variable
+        )}
+      >
+        <SessionContexProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+          <Toaster />
+        </ThemeProvider>
+        </SessionContexProvider>
+      </body>
     </html>
   );
 }
