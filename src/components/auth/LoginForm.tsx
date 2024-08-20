@@ -16,23 +16,20 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-const FormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-});
+import { LoginFormSchema } from "@/schemas/FormSchemas";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof LoginFormSchema>>({
+    resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof LoginFormSchema>) {
     const res = await signIn("credentials", {
       redirect: false,
       email: data.email,

@@ -17,9 +17,7 @@ model User {
   username String
   email String  @unique
   password String
-  escuela String
-  grado String
-  grupo String
+  nivel String
   createdAt DateTime @default(now())
   quizzes Quizz[]
 }

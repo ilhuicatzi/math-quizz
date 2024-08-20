@@ -22,7 +22,7 @@ function ActividadesQuizzMenu() {
   return (
       <Card>
         <CardHeader>
-          <CardTitle>Quizzes</CardTitle>
+          <CardTitle className="text-2xl">Quizzes</CardTitle>
           <CardDescription className="text-sm text-zinc-500">
             Elige un quizz para comenzar.
           </CardDescription>

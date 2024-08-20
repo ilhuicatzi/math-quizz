@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import ButtonResultReditc from "@/components/quizzes/ButtonResultReditc";
 import prisma from '@/lib/prisma';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/AuthOptions";
 import { AritmeticaQuestions } from "@/lib/AritmeticaQuestions";
 
 async function loadLastQuizz() {

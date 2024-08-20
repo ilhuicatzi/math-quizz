@@ -24,43 +24,36 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { RegisterFormSchema } from "@/schemas/FormSchemas";
 
-const FormSchema = z.object({
-  nombre: z.string().min(2),
-  apellido: z.string().min(2),
-  username: z.string().min(2),
-  email: z.string().email(),
-  password: z.string().min(6),
-  escuela: z.string().min(2),
-  grado: z.string().min(2),
-  grupo: z.string().min(1),
-});
 
 function RegisterForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof RegisterFormSchema>>({
+    resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
       nombre: "",
       apellido: "",
       username: "",
       email: "",
       password: "",
-      escuela: "",
-      grado: "",
-      grupo: "",
+      nivel: "",
     },
   });
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof RegisterFormSchema>) {
     console.log(data);
-    const res = await axios.post("/api/auth/signup", data);
+    try {
+      const res = await axios.post("/api/auth/signup", data);
     console.log(res);
 
     if (res.status === 201) {
       toast("Usuario registrado con éxito");
       router.push("/pages/auth/login");
+    }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -171,81 +164,29 @@ function RegisterForm() {
           />
           <FormField
             control={form.control}
-            name="escuela"
+            name="nivel"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Escuela</FormLabel>
+                <FormLabel>Nivel Académico</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona tu escuela" />
+                      <SelectValue placeholder="Selecciona tu nivel" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="IMMcentro">
-                      Instituto Mexicano Madero (centro)
+                    <SelectItem value="primaria">
+                      Primaria
                     </SelectItem>
-                    <SelectItem value="IMMzavaleta">
-                      Instituto Mexicano Madero (zavaleta)
+                    <SelectItem value="secundaria">
+                      Secundaria
                     </SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-          <FormField
-            control={form.control}
-            name="grado"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Grado</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecciona tu grado" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="primero">Primero</SelectItem>
-                    <SelectItem value="segundo">Segundo</SelectItem>
-                    <SelectItem value="tercero">Tercero</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="grupo"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Grupo</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecciona tu grupo" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="a">A</SelectItem>
-                    <SelectItem value="b">B</SelectItem>
-                    <SelectItem value="c">C</SelectItem>
-                    <SelectItem value="d">D</SelectItem>
+                    <SelectItem value="preparatoria">
+                      Preparatoria
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

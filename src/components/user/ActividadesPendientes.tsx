@@ -5,27 +5,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Quizz } from "@/types/Quizz";
 
 const allActivities = ["Aritmética", "Álgebra", "Geometría", "Trigonometría"]
 
-type Quizz = {
-  id: number;
-  titulo: string;
-  calificacion: number;
-  createdAt: Date;
-};
 
-type QuizzArray = Quizz[]
-
-function ActividadesPendientes({quizzes}: {quizzes: QuizzArray}) {
-  const quizzesTitles = quizzes.map((quizz) => quizz.titulo)
-  const pendingQuizzes = allActivities.filter(activity => !quizzesTitles.includes(activity))
+function ActividadesPendientes({quizzes}: {quizzes: Quizz[]}) {
+  const pendingQuizzes = allActivities.filter((activity) => {
+    return quizzes.every((quizz) => quizz.titulo !== activity)
+  })
 
   if (pendingQuizzes.length === 0) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Actividades Pendientes</CardTitle>
+          <CardTitle className="text-2xl">Actividades Pendientes</CardTitle>
           <CardDescription>
             No tienes actividades pendientes
           </CardDescription>

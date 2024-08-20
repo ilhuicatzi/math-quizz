@@ -7,22 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Quizz } from "@/types/Quizz";
 
-type Quizz = {
-  id: number;
-  titulo: string;
-  calificacion: number;
-  createdAt: Date;
-};
-
-type QuizzArray = Quizz[]
-
-function ActividadesRealizadas({quizzes}: {quizzes: QuizzArray}) {
-  console.log(quizzes)
+function ActividadesRealizadas({quizzes}: {quizzes: Quizz[]}) {
   return (
     <Card>
     <CardHeader>
-      <CardTitle>Actividades Realizadas</CardTitle>
+      <CardTitle className="text-2xl">Actividades Realizadas</CardTitle>
       <CardDescription>
         Aquí podrás ver las actividades que tienes Realizadas
       </CardDescription>
