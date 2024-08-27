@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import DropdownProfile from "./DropdownProfile";
+import MenuColapse from "./MenuColapse";
 
 function Navbar() {
-  const { data: session } = useSession();
+  const { data: session} = useSession();
   const pathname = usePathname();
   return (
     <nav className={`${pathname==='/'? "bg-[url('/img/portada.jpg')]" : "bg-background"}`}>
@@ -16,16 +17,21 @@ function Navbar() {
           Math
         </Link>
         <div className="flex items-center gap-4">
-          <ul className="flex items-center gap-4">
+          <ul className="flex items-center gap-5">
             {session ? (
-              <>
+              <li>
                 <DropdownProfile />
-              </>
+              </li>
             ) : (
               <>
-                <Link href="/pages/about" className={`border-b-2 border-transparent hover:border-primary hover:border-b-2 ${pathname==="/pages/about" ? "text-primary" : " "}`}>About</Link>
+                <li className="sm:flex hidden">
                 <Link href="/pages/auth/register" className={` border-b-2 border-transparent hover:border-primary hover:border-b-2 ${pathname==="/pages/auth/register" ? "text-primary" : " "}`}>Register</Link>
-                <Link href="/pages/auth/login" className={` border-b-2 border-transparent hover:border-primary hover:border-b-2 ${pathname==="/pages/auth/login" ? "text-primary" : " "}`}>Login</Link>
+                </li>
+                <li className="sm:flex hidden"><Link href="/pages/auth/login" className={` border-b-2 border-transparent hover:border-primary hover:border-b-2 ${pathname==="/pages/auth/login" ? "text-primary" : " "}`}>Login</Link></li>
+                <li className="sm:flex hidden"><Link href="/pages/about" className={`border-b-2 border-transparent hover:border-primary hover:border-b-2 ${pathname==="/pages/about" ? "text-primary" : " "}`}>About</Link></li>
+                <li className="flex sm:hidden">
+                <MenuColapse />
+                </li>
               </>
             )}
           </ul>

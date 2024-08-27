@@ -180,6 +180,7 @@ function RegisterForm() {
                     <SelectItem value="primaria">Primaria</SelectItem>
                     <SelectItem value="secundaria">Secundaria</SelectItem>
                     <SelectItem value="preparatoria">Preparatoria</SelectItem>
+                    <SelectItem value="universidad">Universidad</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
