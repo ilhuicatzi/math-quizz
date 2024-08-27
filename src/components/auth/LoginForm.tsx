@@ -16,7 +16,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { LoginFormSchema } from "@/schemas/FormSchemas";
+import { LoginFormSchema } from "@/schemas/AuthFormSchemas";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);

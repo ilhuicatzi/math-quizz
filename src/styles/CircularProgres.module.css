@@ -1,0 +1,26 @@
+.time {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #3fd544;
+    filter: drop-shadow(0 0px 5px #3fd54460);
+
+    &_number {
+        position: absolute;
+        font-size: 2em;
+        font-weight: 600;
+        transition: all 0.5s linear;
+    }
+
+    &_bar {
+        transition: all 1s linear;
+        //fill: #3fd544;
+    }
+
+    &_alert {
+        color: #ded009;
+        filter: drop-shadow(0 0 5px #ded00960);
+    }
+}

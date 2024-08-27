@@ -24,8 +24,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { RegisterFormSchema } from "@/schemas/FormSchemas";
-
+import { RegisterFormSchema } from "@/schemas/AuthFormSchemas";
 
 function RegisterForm() {
   const router = useRouter();
@@ -46,14 +45,14 @@ function RegisterForm() {
     console.log(data);
     try {
       const res = await axios.post("/api/auth/signup", data);
-    console.log(res);
+      console.log(res);
 
-    if (res.status === 201) {
-      toast("Usuario registrado con éxito");
-      router.push("/pages/auth/login");
-    }
+      if (res.status === 201) {
+        toast("Usuario registrado con éxito");
+        router.push("/pages/auth/login");
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -178,15 +177,9 @@ function RegisterForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="primaria">
-                      Primaria
-                    </SelectItem>
-                    <SelectItem value="secundaria">
-                      Secundaria
-                    </SelectItem>
-                    <SelectItem value="preparatoria">
-                      Preparatoria
-                    </SelectItem>
+                    <SelectItem value="primaria">Primaria</SelectItem>
+                    <SelectItem value="secundaria">Secundaria</SelectItem>
+                    <SelectItem value="preparatoria">Preparatoria</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

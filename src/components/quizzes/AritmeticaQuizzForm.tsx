@@ -23,39 +23,10 @@ import { Button } from "@/components/ui/button";
 import { AritmeticaQuestions } from "@/lib/AritmeticaQuestions";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-
-const FormSchema = z.object({
-  question1: z.enum(["1-r1", "1-r2", "1-r3", "1-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question2: z.enum(["2-r1", "2-r2", "2-r3", "2-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question3: z.enum(["3-r1", "3-r2", "3-r3", "3-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question4: z.enum(["4-r1", "4-r2", "4-r3", "4-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question5: z.enum(["5-r1", "5-r2", "5-r3", "5-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question6: z.enum(["6-r1", "6-r2", "6-r3", "6-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question7: z.enum(["7-r1", "7-r2", "7-r3", "7-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question8: z.enum(["8-r1", "8-r2", "8-r3", "8-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question9: z.enum(["9-r1", "9-r2", "9-r3", "9-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-  question10: z.enum(["10-r1", "10-r2", "10-r3", "10-r4"], {
-    required_error: "Debes seleccionar una respuesta",
-  }),
-});
+import CircularProgressBar from "@/components/quizzes/CircularProgress";
+import { FormSchemaQuestions } from "@/schemas/QuestionsFormSchema";
+import { useState, useEffect } from "react";
+import styles from "@/styles/CircularProgres.module.css";
 
 interface FormValues {
   question1: string;
@@ -70,14 +41,39 @@ interface FormValues {
   question10: string;
 }
 
+const TOTAL_TIME = 90;
+const TIME_PERCENTAGE = 100 / TOTAL_TIME;
+
+const getColorFill = (time: number) => {
+  if (time * TIME_PERCENTAGE > 80) return "#2e0202";
+  if (time * TIME_PERCENTAGE > 60) return "#382304";
+  return "#034019";
+};
 
 function AritmeticaQuizzForm() {
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const [time, setTime] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [loadingResponse, setLoadingResponse] = useState(false);
+  const [viewExplanation, setViewExplanation] = useState(false);
+  const [run, setRun] = useState(true);
+  const form = useForm<z.infer<typeof FormSchemaQuestions>>({
+    resolver: zodResolver(FormSchemaQuestions),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  useEffect(() => {
+    if (!loadingResponse) {
+      const intervalTIme = setInterval(() => {
+        if (time < TOTAL_TIME && run) setTime((prev) => prev + 1);
+      }, 1000);
+      if (time === TOTAL_TIME) {
+        setRun(false);
+      }
+      return () => clearInterval(intervalTIme);
+    }
+  }, [time, loadingResponse, run]);
+
+  function onSubmit(data: z.infer<typeof FormSchemaQuestions>) {
     console.log(data);
     const titulo = "Aritmética";
 
@@ -88,14 +84,13 @@ function AritmeticaQuizzForm() {
       })
       .then((response) => {
         console.log(response);
-        if(response.status === 201){
-          router.push("/pages/user/quizzes/aritmetica/resultados")
+        if (response.status === 201) {
+          router.push("/pages/user/quizzes/aritmetica/resultados");
         }
       })
       .catch((error) => {
         console.error(error);
       });
-
   }
   return (
     <Form {...form}>
@@ -106,6 +101,22 @@ function AritmeticaQuizzForm() {
         {AritmeticaQuestions.map((question) => (
           <Card className="group" key={question.id}>
             <CardHeader>
+              {!loadingResponse && (
+                <div
+                  className={`relative ${styles.time}
+                                      ${time * TIME_PERCENTAGE > 60 && time * TIME_PERCENTAGE <= 80 && styles.time_alert}
+                                      ${time * TIME_PERCENTAGE > 80 && styles.time_danger}`}
+                >
+                  <CircularProgressBar
+                    percentage={100 - time * TIME_PERCENTAGE}
+                    props={{ className: `${styles.time_bar}` }}
+                    colorFill={getColorFill(time)}
+                  />
+                  <span className={styles.}>
+                    {(TOTAL_TIME - time).toString().padStart(2, "0")}
+                  </span>
+                </div>
+              )}
               <CardTitle className="font-normal mb-2 text-xl">
                 {question.title}
               </CardTitle>
