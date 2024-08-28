@@ -1,7 +1,7 @@
-// model Quizz {
+// model Test {
 //     id           Int             @id @default(autoincrement())
 //     titulo       String
-//     respuestas   RespuestaQuiz[]
+//     respuestas   RespuestaTest[]
 //     calificacion Float?
 //     createdAt    DateTime        @default(now())
 //     updatedAt    DateTime        @updatedAt
@@ -9,17 +9,23 @@
 //     estudianteId Int
 //   }
 
-// model RespuestaQuiz {
-//     id        Int    @id @default(autoincrement())
-//     question1 String
-//     question2 String
-//     question3 String
-//     question4 String
-//     question5 String
-//     quizz     Quizz  @relation(fields: [quizzId], references: [id])
-//     quizzId   Int
+//   model RespuestaTest {
+//     id         Int    @id @default(autoincrement())
+//     question1  String
+//     question2  String
+//     question3  String
+//     question4  String
+//     question5  String
+//     question6  String
+//     question7  String
+//     question8  String
+//     question9  String
+//     question10 String
+//     test       Test   @relation(fields: [testId], references: [id])
+//     testId     Int
 //   }
-export interface Quizz {
+
+export interface Test {
     id: number;
     titulo: string;
     calificacion: number | null;
@@ -27,22 +33,27 @@ export interface Quizz {
     estudianteId: number;
 }
 
-export interface QuizzFull {
+export interface TestFull {
     id: number;
     titulo: string;
     calificacion: number | null;
     createdAt: Date;
     updatedAt: Date;
     estudianteId: number;
-    respuestas: RespuestaQuiz[];
+    respuestas: RespuestaTest[];
 }
 
-export interface RespuestaQuiz {
+export interface RespuestaTest {
     id: number;
     question1: string;
     question2: string;
     question3: string;
     question4: string;
     question5: string;
-    quizzId: number;
+    question6: string;
+    question7: string;
+    question8: string;
+    question9: string;
+    question10: string;
+    testId: number;
 }

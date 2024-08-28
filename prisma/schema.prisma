@@ -11,30 +11,66 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  nombre String
-  apellido String
-  username String
-  email String  @unique
-  password String
-  nivel String
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  apellido  String
+  username  String
+  email     String    @unique
+  password  String
+  nivel     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  organizacion     String
+  profile   Profile[]
+  quizzes   Quizz[]
+  tests     Test[]
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  avatar    String
+  phrase    String
   createdAt DateTime @default(now())
-  quizzes Quizz[]
+  updatedAt DateTime @updatedAt
 }
 
 model Quizz {
-  id        Int     @id @default(autoincrement())
-  titulo     String
-  respuestas Respuesta[]
+  id           Int             @id @default(autoincrement())
+  titulo       String
+  respuestas   RespuestaQuiz[]
   calificacion Float?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  estudiante    User    @relation(fields: [estudianteId], references: [id])
-  estudianteId  Int
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  estudiante   User            @relation(fields: [estudianteId], references: [id])
+  estudianteId Int
 }
 
-model Respuesta {
-  id        Int     @id @default(autoincrement())
+model Test {
+  id           Int             @id @default(autoincrement())
+  titulo       String
+  respuestas   RespuestaTest[]
+  calificacion Float?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  estudiante   User            @relation(fields: [estudianteId], references: [id])
+  estudianteId Int
+}
+
+model RespuestaQuiz {
+  id        Int    @id @default(autoincrement())
+  question1 String
+  question2 String
+  question3 String
+  question4 String
+  question5 String
+  quizz     Quizz  @relation(fields: [quizzId], references: [id])
+  quizzId   Int
+}
+
+model RespuestaTest {
+  id         Int    @id @default(autoincrement())
   question1  String
   question2  String
   question3  String
@@ -45,6 +81,6 @@ model Respuesta {
   question8  String
   question9  String
   question10 String
-  quizz     Quizz   @relation(fields: [quizzId], references: [id])
-  quizzId   Int
+  test       Test   @relation(fields: [testId], references: [id])
+  testId     Int
 }

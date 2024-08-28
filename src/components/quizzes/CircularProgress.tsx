@@ -1,4 +1,4 @@
-import React, { useState, useEffect, SVGProps } from "react";
+import { SVGProps } from "react";
 
 interface CircularProgressBarProps {
   percentage: number;
