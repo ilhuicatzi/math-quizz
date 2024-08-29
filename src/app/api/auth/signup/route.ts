@@ -2,17 +2,10 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 
-interface DataRequest {
-  email: string;
-  password: string;
-  username: string;
-  nivel: string;
-  nombre: string;
-  apellido: string;
-}
 
 export async function POST(request: Request) {
   const data = await request.json();
+  console.log(data);
 
   // Validar datos (puedes usar Joi o Yup aquí)
   if (
@@ -47,6 +40,9 @@ export async function POST(request: Request) {
   const salt = await bcrypt.genSalt(10);
   data.password = await bcrypt.hash(data.password, salt);
 
+  // Agregar la organización por defecto
+  data.organizacion = "none";
+
   try {
     // Crear el nuevo usuario
     const user = await prisma.user.create({ data });
@@ -54,6 +50,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
       { error: "Failed to create user" },
       { status: 500 }

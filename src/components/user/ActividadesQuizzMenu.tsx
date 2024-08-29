@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { QuizzesMenuData } from "@/lib/menuQuizzData";
+import { QuizzesMenuData } from "@/lib/dashboard/menuQuizzData";
 import { useRouter } from "next/navigation";
 import {
   Card,

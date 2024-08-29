@@ -20,7 +20,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Latex from "react-latex-next";
 import { Button } from "@/components/ui/button";
-import { AritmeticaQuestions } from "@/lib/AritmeticaQuestions";
+import { AritmeticaQuestions } from "@/lib/tests/AritmeticaQuestions";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { FormSchemaQuestions } from "@/schemas/QuestionsFormSchema";

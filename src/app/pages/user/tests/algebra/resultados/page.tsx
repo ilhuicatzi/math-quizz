@@ -11,7 +11,7 @@ import {
   import prisma from '@/lib/prisma';
   import { getServerSession } from 'next-auth/next';
   import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-  import { AlgebraQuestions } from "@/lib/AlgebraQuestions";
+  import { AlgebraQuestions } from "@/lib/tests/AlgebraQuestions";
   
   async function loadLastQuizz() {
     try {
