@@ -24,6 +24,8 @@
 //   updatedAt DateTime @updatedAt
 // }
 
+
+
 export interface User {
     id: number;
     nombre: string;
@@ -33,6 +35,14 @@ export interface User {
     password: string;
     nivel: string;
     createdAt: Date;
+  }
+
+  export interface UserSession {
+    id: string;
+    nombre: string;
+    apellido: string;
+    email: string;
+    nivel: string;
   }
 
 export interface UserFull {

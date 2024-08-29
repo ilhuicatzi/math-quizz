@@ -6,8 +6,10 @@ import { usePathname } from "next/navigation";
 import DropdownProfile from "./DropdownProfile";
 import MenuColapse from "./MenuColapse";
 
+
 function Navbar() {
   const { data: session} = useSession();
+  console.log(session);
   const pathname = usePathname();
   return (
     <nav className={`${pathname==='/'? "bg-[url('/img/portada.jpg')]" : "bg-background"}`}>
@@ -20,7 +22,7 @@ function Navbar() {
           <ul className="flex items-center gap-5">
             {session ? (
               <li>
-                <DropdownProfile />
+                <DropdownProfile user={session.user} />
               </li>
             ) : (
               <>

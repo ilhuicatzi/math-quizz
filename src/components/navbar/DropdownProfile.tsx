@@ -10,16 +10,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { signOut } from "next-auth/react";
-function DropdownProfile() {
+import { UserSession } from "@/types/User";
+
+function DropdownProfile({ user }: { user: UserSession }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="border hover:border-primary">
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>
+            {user.nombre.charAt(0)}
+            {user.apellido.charAt(0)}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
+        <DropdownMenuLabel>Hola {user.nombre}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
