@@ -21,7 +21,7 @@ export const SumaFracciones = [
         title: "Pregunta 1",
         quizz_id: "quizz1",
         description:
-            "¿Cuál es la suma de $$ \\dfrac{1}{3} + \\dfrac{1}{4} $?",
+            "¿Cuál es la suma de $$ \\dfrac{1}{3} + \\dfrac{1}{4} = \\, ? $$",
         options: [
             { id: "1-r1", value: "$ \\dfrac{2}{7} $", item: "A", color: "bg-teal-600" },
             { id: "1-r2", value: "$ \\dfrac{1}{12} $", item: "B", color: "bg-rose-600" },
@@ -35,7 +35,7 @@ export const SumaFracciones = [
         title: "Pregunta 2",
         quizz_id: "quizz2",
         description:
-            "¿Cuál es la suma de $$ \\dfrac{1}{2} + \\dfrac{1}{3} $?",
+            "Resultado de $$ \\dfrac{1}{2} + \\dfrac{1}{3} $$",
         options: [
             { id: "2-r1", value: "$ \\dfrac{5}{6} $", item: "A", color: "bg-teal-600" },
             { id: "2-r2", value: "$ \\dfrac{2}{5} $", item: "B", color: "bg-rose-600" },
@@ -49,7 +49,7 @@ export const SumaFracciones = [
         title: "Pregunta 3",
         quizz_id: "quizz3",
         description:
-            "¿Cuál es la suma de $$ \\dfrac{1}{4} + \\dfrac{1}{5} $?",
+            "¿Cuál es la suma de $ \\dfrac{1}{4} + \\dfrac{1}{5} $?",
         options: [
             { id: "3-r1", value: "$ \\dfrac{9}{20} $", item: "A", color: "bg-teal-600" },
             { id: "3-r2", value: "$ \\dfrac{2}{9} $", item: "B", color: "bg-rose-600" },
@@ -63,7 +63,7 @@ export const SumaFracciones = [
         title: "Pregunta 4",
         quizz_id: "quizz4",
         description:
-            "¿Cuál es la suma de $$ \\dfrac{1}{5} + \\dfrac{1}{6} $?",
+            "¿Cuál es la suma de $$ \\dfrac{1}{5} + \\dfrac{1}{6} = \\, ? $$",
         options: [
             { id: "4-r1", value: "$ \\dfrac{11}{30} $", item: "A", color: "bg-teal-600" },
             { id: "4-r2", value: "$ \\dfrac{2}{30} $", item: "B", color: "bg-rose-600" },
@@ -77,7 +77,7 @@ export const SumaFracciones = [
         title: "Pregunta 5",
         quizz_id: "quizz5",
         description:
-            "¿Cuál es la suma de $$ \\dfrac{1}{6} + \\dfrac{1}{7} $?",
+            "Resultado de  $$ \\dfrac{1}{6} + \\dfrac{1}{7} $$",
         options: [
             { id: "5-r1", value: "$ \\dfrac{13}{42} $", item: "A", color: "bg-teal-600" },
             { id: "5-r2", value: "$ \\dfrac{2}{42} $", item: "B", color: "bg-rose-600" },
@@ -94,7 +94,7 @@ export const RestaFracciones = [
         title: "Pregunta 1",
         quizz_id: "quizz1",
         description:
-            "¿Cuál es la resta de $$ \\dfrac{1}{3} - \\dfrac{1}{4} $?",
+            "¿Cuál es la resta de $$ \\dfrac{1}{3} - \\dfrac{1}{4} = \\, ? $$",
         options: [
             { id: "1-r1", value: "$ \\dfrac{1}{12} $", item: "A", color: "bg-teal-600" },
             { id: "1-r2", value: "$ \\dfrac{1}{7} $", item: "B", color: "bg-rose-600" },
@@ -108,7 +108,7 @@ export const RestaFracciones = [
         title: "Pregunta 2",
         quizz_id: "quizz2",
         description:
-            "¿Cuál es la resta de $$ \\dfrac{1}{2} - \\dfrac{1}{3} $?",
+            "Realiza la siguiente operación $ \\dfrac{1}{2} - \\dfrac{1}{3} $",
         options: [
             { id: "2-r1", value: "$ \\dfrac{1}{6} $", item: "A", color: "bg-teal-600" },
             { id: "2-r2", value: "$ \\dfrac{1}{5} $", item: "B", color: "bg-rose-600" },
@@ -122,7 +122,7 @@ export const RestaFracciones = [
         title: "Pregunta 3",
         quizz_id: "quizz3",
         description:
-            "¿Cuál es la resta de $$ \\dfrac{1}{4} - \\dfrac{1}{5} $?",
+            "Cuál es el resultado de  $$ \\dfrac{1}{4} - \\dfrac{1}{5} $$",
         options: [
             { id: "3-r1", value: "$ \\dfrac{1}{20} $", item: "A", color: "bg-teal-600" },
             { id: "3-r2", value: "$ \\dfrac{1}{9} $", item: "B", color: "bg-rose-600" },
@@ -136,7 +136,7 @@ export const RestaFracciones = [
         title: "Pregunta 4",
         quizz_id: "quizz4",
         description:
-            "¿Cuál es la resta de $$ \\dfrac{1}{5} - \\dfrac{1}{6} $?",
+            "Resuelve la siguiente resta de fracciones $$ \\dfrac{1}{5} - \\dfrac{1}{6} $$",
         options: [
             { id: "4-r1", value: "$ \\dfrac{1}{30} $", item: "A", color: "bg-teal-600" },
             { id: "4-r2", value: "$ \\dfrac{1}{11} $", item: "B", color: "bg-rose-600" },
@@ -150,7 +150,7 @@ export const RestaFracciones = [
         title: "Pregunta 5",
         quizz_id: "quizz5",
         description:
-            "¿Cuál es la resta de $$ \\dfrac{1}{6} - \\dfrac{1}{7} $?",
+            "Resultado de la operacion: $$ \\dfrac{1}{6} - \\dfrac{1}{7} $$",
         options: [
             { id: "5-r1", value: "$ \\dfrac{1}{42} $", item: "A", color: "bg-teal-600" },
             { id: "5-r2", value: "$ \\dfrac{1}{13} $", item: "B", color: "bg-rose-600" },

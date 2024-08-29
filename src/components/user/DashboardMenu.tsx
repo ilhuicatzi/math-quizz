@@ -7,11 +7,11 @@ import DatosGeneralesUser from "@/components/user/DatosGeneralesUser";
 import ActividadesQuizzMenu from "@/components/user/ActividadesQuizzMenu";
 import ActividadesPendientes from "@/components/user/ActividadesPendientes";
 import ActividadesRealizadas from "@/components/user/ActividadesRealizadas";
-import { Quizz } from ".prisma/client";
+import { Quizzes } from ".prisma/client";
 
 
 
-function DashboardMenu({quizzes}: {quizzes: Quizz[]}) {
+function DashboardMenu({quizzes}: {quizzes: Quizzes[]}) {
   const { data: session } = useSession()
   const [showMenu, setShowMenu] = useState("actividades");
 

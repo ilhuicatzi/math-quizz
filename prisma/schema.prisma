@@ -10,20 +10,97 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int       @id @default(autoincrement())
-  nombre    String
-  apellido  String
+model Root {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
   username  String
-  email     String    @unique
+  email     String   @unique
   password  String
-  nivel     String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  organizacion     String
-  profile   Profile[]
-  quizzes   Quizz[]
-  tests     Test[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Admin {
+  id          Int          @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  username    String
+  email       String       @unique
+  password    String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  status      Boolean
+  curriculums Curriculum[]
+}
+
+model Curriculum {
+  id         Int      @id @default(autoincrement())
+  area       String
+  areaId     String
+  abstract   String
+  topics     Topics[]
+  colorTopic String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  admind     Admin    @relation(fields: [adminId], references: [id])
+  adminId    Int
+}
+
+model Topics {
+  id           Int             @id @default(autoincrement())
+  topicId      String
+  topic        String
+  duration     String
+  colorTopic   String
+  description  String
+  path         String
+  questions    QuestionTopic[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  curriculum   Curriculum      @relation(fields: [curriculumId], references: [id])
+  curriculumId Int
+}
+
+model QuestionTopic {
+  id            Int              @id @default(autoincrement())
+  questionId    String
+  questionTitle String
+  question      String
+  options       OptionQuestion[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  topic         Topics           @relation(fields: [topicId], references: [id])
+  topicId       Int
+}
+
+model OptionQuestion {
+  id         Int           @id @default(autoincrement())
+  optionId   String
+  option     String
+  label      String
+  color      String
+  correct    Boolean
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  question   QuestionTopic @relation(fields: [questionId], references: [id])
+  questionId Int
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  nombre       String
+  apellido     String
+  username     String
+  email        String    @unique
+  password     String
+  nivel        String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  organizacion String
+  profile      Profile[]
+  quizzes      Quizzes[]
+  tests        Tests[]
 }
 
 model Profile {
@@ -36,9 +113,11 @@ model Profile {
   updatedAt DateTime @updatedAt
 }
 
-model Quizz {
+model Quizzes {
   id           Int             @id @default(autoincrement())
-  titulo       String
+  area         String
+  topicId      String
+  topic        String
   respuestas   RespuestaQuiz[]
   calificacion Float?
   createdAt    DateTime        @default(now())
@@ -47,7 +126,18 @@ model Quizz {
   estudianteId Int
 }
 
-model Test {
+model RespuestaQuiz {
+  id        Int     @id @default(autoincrement())
+  question1 String
+  question2 String
+  question3 String
+  question4 String
+  question5 String
+  quizz     Quizzes @relation(fields: [quizzId], references: [id])
+  quizzId   Int
+}
+
+model Tests {
   id           Int             @id @default(autoincrement())
   titulo       String
   respuestas   RespuestaTest[]
@@ -56,17 +146,6 @@ model Test {
   updatedAt    DateTime        @updatedAt
   estudiante   User            @relation(fields: [estudianteId], references: [id])
   estudianteId Int
-}
-
-model RespuestaQuiz {
-  id        Int    @id @default(autoincrement())
-  question1 String
-  question2 String
-  question3 String
-  question4 String
-  question5 String
-  quizz     Quizz  @relation(fields: [quizzId], references: [id])
-  quizzId   Int
 }
 
 model RespuestaTest {
@@ -81,6 +160,6 @@ model RespuestaTest {
   question8  String
   question9  String
   question10 String
-  test       Test   @relation(fields: [testId], references: [id])
+  test       Tests  @relation(fields: [testId], references: [id])
   testId     Int
 }

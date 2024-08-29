@@ -33,9 +33,9 @@ function DialogResponse({
       <AlertDialogTrigger asChild>
         <Button
           variant="default"
-          className={`px-12 py-5 text-white ${options.color}`}
+          className={`px-12 py-8 text-white ${options.color}`}
         >
-          <Latex>{`$ ${options.value} $`}</Latex>
+          <Latex>{` ${options.value} `}</Latex>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

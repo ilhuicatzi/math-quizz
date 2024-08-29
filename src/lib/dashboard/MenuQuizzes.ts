@@ -2,7 +2,7 @@
 export const MenuQuizzes = [
     {
       id: "aritmetica",
-      title: "Aritmética",
+      area: "Aritmética",
       abstract:
         "Auquí encontrarás temas relacionados con operaciones básicas con números enteros y fraccionarios, así como conceptos de proporcionalidad y porcentajes.",
       quizzesTopic: [
@@ -29,7 +29,7 @@ export const MenuQuizzes = [
     },
     {
       id: "algebra",
-      title: "Álgebra",
+      area: "Álgebra",
       abstract:
         "Aquí encontrarás temas relacionados con reducción de términos semejantes, multiplicación de polinomios, productos notables, factorización y resolución de ecuaciones de primer y segundo grado.",
       quizzesTopic: [

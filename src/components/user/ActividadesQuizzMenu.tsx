@@ -33,7 +33,7 @@ function ActividadesQuizzMenu() {
           MenuQuizzes.map((quiz) => (
             <AccordionItem value={quiz.id} key={quiz.id}>
               <AccordionTrigger className="text-lg">
-                {quiz.title}
+                {quiz.area}
               </AccordionTrigger>
               <AccordionContent>
                 {quiz.abstract}

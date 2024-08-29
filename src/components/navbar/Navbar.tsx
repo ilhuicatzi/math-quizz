@@ -15,7 +15,9 @@ function Navbar() {
     <nav className={`${pathname==='/'? "bg-[url('/img/portada.jpg')]" : "bg-background"}`}>
       <div className={`${pathname==='/' ? "dark:bg-black dark:opacity-60 absolute inset-0 " : " "}`}></div>
       <div className="flex justify-between items-center px-6 py-2 w-full z-10 text-sm backdrop-blur-lg">
-      <Link href="/" className="text-2xl font-bold">
+      <Link href={
+          session ? "/pages/user" : "/"
+      } className="text-2xl font-bold">
           Math
         </Link>
         <div className="flex items-center gap-4">
