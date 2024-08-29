@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { QuizzesMenuData } from "@/lib/dashboard/menuQuizzData";
+import { MenuQuizzes } from "@/lib/dashboard/MenuQuizzes";
 import { useRouter } from "next/navigation";
 import {
   Card,
@@ -24,28 +24,41 @@ function ActividadesQuizzMenu() {
         <CardHeader>
           <CardTitle className="text-2xl">Quizzes</CardTitle>
           <CardDescription className="text-sm text-zinc-500">
-            Elige un quizz para comenzar.
+            Elige una seccion para comenzar.
           </CardDescription>
         </CardHeader>
         <CardContent>
         <Accordion type="single" collapsible>
         {
-          QuizzesMenuData.map((quiz) => (
+          MenuQuizzes.map((quiz) => (
             <AccordionItem value={quiz.id} key={quiz.id}>
-              <AccordionTrigger>
+              <AccordionTrigger className="text-lg">
                 {quiz.title}
               </AccordionTrigger>
               <AccordionContent>
-                {quiz.description}
-                <div className="mt-4 flex justify-end">
-                    <Button 
-                    onClick={() => {
-                      router.push(`${quiz.path}`);
-                    }
+                {quiz.abstract}
+                <div className="mt-4 grid gap-y-4">
+                  {
+                    quiz.quizzesTopic.map((topic) => (
+                      <div key={topic.id} className="w-11/12 pl-4 pr-1 py-0.5 rounded-xl hover:bg-muted flex justify-between items-center">
+                        <div>
+                          <p className="text-sm font-semibold">{topic.topic}</p>
+                          <p className="text-xs text-zinc-500">{topic.description}</p>
+                        </div>
+                        <Button 
+                        size="sm"
+                          onClick={() => {
+                            router.push(`${topic.path}`);
+                          }
+                        }
+                          className={`
+                          ${quiz.colorSeccion} text-zinc-50
+                          `}>
+                          Iniciar
+                        </Button>
+                      </div>
+                    ))
                   }
-                    className={`${quiz.color1} text-zinc-50 ${quiz.color2}`}>
-                      Iniciar
-                    </Button>
                 </div>
               </AccordionContent>
             </AccordionItem>
