@@ -66,7 +66,7 @@ function Navbar() {
   );
 
   const NavbarAdmins = () => (
-    <div className="flex justify-between items-center px-6 py-2 w-full z-10 text-sm backdrop-blur-lg">
+    <div className="flex justify-between items-center px-2 sm:px-6 py-2 w-full z-10 text-sm backdrop-blur-lg">
       <Link
         href={session ? "/admins/curriculum" : "/admins/auth/loginAdmin"}
         className="text-2xl font-bold"
@@ -122,7 +122,7 @@ function Navbar() {
             : " "
         }`}
       ></div>
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         {pathname.includes("/admins") ? NavbarAdmins() : NavbarUsers()}
       </div>
     </nav>
