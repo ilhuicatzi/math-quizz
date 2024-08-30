@@ -39,10 +39,12 @@ export interface User {
 
   export interface UserSession {
     id: string;
-    nombre: string;
-    apellido: string;
+    nombre?: string | undefined;
+    apellido?: string | undefined;
     email: string;
-    nivel: string;
+    nivel?: string | undefined;
+    username?: string | undefined;
+    isAdmin: boolean;
   }
 
 export interface UserFull {

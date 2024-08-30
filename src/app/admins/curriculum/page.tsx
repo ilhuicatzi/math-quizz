@@ -1,5 +1,9 @@
+import { middlewareSession } from "@/middlewares/AuthServerSession"
+import { authOptions } from "@/middlewares/AuthOptions"
 
-function CurriculumPage() {
+async function CurriculumPage() {
+  await middlewareSession(authOptions)
+
   return (
     <div>CurriculumPage</div>
   )

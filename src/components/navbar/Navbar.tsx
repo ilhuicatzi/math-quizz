@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import DropdownProfile from "./DropdownProfile";
+import DropdownProfileAdmin from "./DropdownProfileAdmin";
 import MenuColapse from "./MenuColapse";
+import { NavigationMenuAdmin } from "../admin/curriculum/NavigationMenuAdmin";
 
 function Navbar() {
   const { data: session } = useSession();
   const pathname = usePathname();
-  console.log(session);
 
   const NavbarUsers = () => (
     <div className="flex justify-between items-center px-6 py-2 w-full z-10 text-sm backdrop-blur-lg">
@@ -69,15 +70,16 @@ function Navbar() {
     <div className="flex justify-between items-center px-2 sm:px-6 py-2 w-full z-10 text-sm backdrop-blur-lg">
       <Link
         href={session ? "/admins/curriculum" : "/admins/auth/loginAdmin"}
-        className="text-2xl font-bold"
+        className={`text-2xl font-bold ${session?.user.isAdmin ? "hidden" : "flex"}`}
       >
         Admin
       </Link>
+      <NavigationMenuAdmin />
       <div className="flex items-center gap-4">
         <ul className="flex items-center gap-5">
           {session ? (
             <li>
-              <DropdownProfile user={session.user} />
+              <DropdownProfileAdmin user={session.user} />
             </li>
           ) : (
             <>
@@ -85,7 +87,9 @@ function Navbar() {
                 <Link
                   href="/admins/auth/registerAdmin"
                   className={` border-b-2 border-transparent hover:border-primary hover:border-b-2 ${
-                    pathname === "/admins/auth/registerAdmin" ? "text-primary" : " "
+                    pathname === "/admins/auth/registerAdmin"
+                      ? "text-primary"
+                      : " "
                   }`}
                 >
                   Register
@@ -93,9 +97,11 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/admins/auth/loginAdmin"                  
+                  href="/admins/auth/loginAdmin"
                   className={` border-b-2 border-transparent hover:border-primary hover:border-b-2 ${
-                    pathname === "/admins/auth/loginAdmin" ? "text-primary" : " "
+                    pathname === "/admins/auth/loginAdmin"
+                      ? "text-primary"
+                      : " "
                   }`}
                 >
                   Login
@@ -123,7 +129,7 @@ function Navbar() {
         }`}
       ></div>
       <div className=" mx-auto">
-        {pathname.includes("/admins") ? NavbarAdmins() : NavbarUsers()}
+        {session?.user.isAdmin ? NavbarAdmins() : NavbarUsers()}
       </div>
     </nav>
   );

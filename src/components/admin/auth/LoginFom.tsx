@@ -30,7 +30,7 @@ function LoginForm() {
   });
 
   async function onSubmit(data: z.infer<typeof LoginFormSchema>) {
-    const res = await signIn("credentials", {
+    const res = await signIn("admin", {
       redirect: false,
       email: data.email,
       password: data.password,
@@ -41,7 +41,7 @@ function LoginForm() {
       return;
     }
 
-    router.push("/pages/user");
+    router.push("/admins/curriculum");
   }
 
   return (

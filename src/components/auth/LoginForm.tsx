@@ -30,7 +30,7 @@ function LoginForm() {
   });
 
   async function onSubmit(data: z.infer<typeof LoginFormSchema>) {
-    const res = await signIn("credentials", {
+    const res = await signIn("user", {
       redirect: false,
       email: data.email,
       password: data.password,

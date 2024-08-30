@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/AuthOptions';
+import { authOptions } from '@/middlewares/AuthOptions';
 import { AritmeticaQuestions } from '@/lib/tests/AritmeticaQuestions';
 import { AlgebraQuestions } from '@/lib/tests/AlgebraQuestions';
 

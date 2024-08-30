@@ -5,19 +5,23 @@ declare module "next-auth" {
 
   interface User {
     id: string;
-    nombre: string;
-    apellido: string;
+    nombre?: string;
+    apellido?: string;
+    username?: string;
     email: string;
-    nivel: string;
+    nivel?: string;
+    isAdmin: boolean;
   }
 
   interface Session {
     user: {
         id: string;
-        nombre: string;
-        apellido: string;
+        nombre?: string;
+        apellido?: string;
+        username?: string;
         email: string;
-        nivel: string;
+        nivel?: string;
+        isAdmin: boolean;
     }
   }
 }
@@ -27,9 +31,11 @@ declare module "next-auth" {
     interface JWT {
 
         id: string;
-        nombre: string;
-        apellido: string;
+        nombre?: string;
+        apellido?: string;
         email: string;
-        nivel: string;
+        nivel?: string;
+        username?: string;
+        isAdmin: boolean;
     }
   }

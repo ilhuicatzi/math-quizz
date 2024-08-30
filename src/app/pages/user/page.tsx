@@ -1,7 +1,7 @@
 import DashboardMenu from "@/components/user/DashboardMenu";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/AuthOptions";
+import { authOptions } from "@/middlewares/AuthOptions";
 
 async function loadQuizzes() {
   const session = await getServerSession(authOptions);
@@ -9,7 +9,7 @@ async function loadQuizzes() {
     return null;
   }
   const userId = parseInt(session.user.id);
-  const quizzes = await prisma.quizz.findMany({
+  const quizzes = await prisma.quizzes.findMany({
     where: {
       estudianteId: userId,
     },

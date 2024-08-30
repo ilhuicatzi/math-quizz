@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/AuthOptions";
+import { authOptions } from "@/middlewares/AuthOptions";
 
 export async function GET() {
   try {
@@ -15,7 +15,7 @@ export async function GET() {
 
     const userId = parseInt(session.user.id);
 
-    const quizzes = await prisma.quizz.findMany({
+    const quizzes = await prisma.quizzes.findMany({
       where: {
         estudianteId: userId,
       },

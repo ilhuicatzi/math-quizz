@@ -18,8 +18,8 @@ function DropdownProfile({ user }: { user: UserSession }) {
       <DropdownMenuTrigger asChild>
         <Avatar className="border hover:border-primary">
           <AvatarFallback>
-            {user.nombre.charAt(0)}
-            {user.apellido.charAt(0)}
+            {user.nombre?.charAt(0)}
+            {user.apellido?.charAt(0)}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
