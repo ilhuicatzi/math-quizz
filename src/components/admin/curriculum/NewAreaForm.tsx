@@ -96,7 +96,7 @@ function NewAreaForm() {
           name="abstract"
           render={({ field }) => (
             <FormItem className="sm:col-span-2">
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Resumen</FormLabel>
               <FormControl>
                 <Textarea
                   rows={3}
@@ -142,7 +142,7 @@ function NewAreaForm() {
           variant="secondary"
           className="w-full sm:mt-8 mb-0"
         >
-          Register
+          Crear Area
         </Button>
       </form>
     </Form>

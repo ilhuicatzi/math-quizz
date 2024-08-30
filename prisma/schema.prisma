@@ -55,6 +55,7 @@ model Topics {
   colorTopic   String
   description  String
   path         String
+  branch       String
   questions    QuestionTopic[]
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
@@ -67,6 +68,7 @@ model QuestionTopic {
   questionId    String
   questionTitle String
   question      String
+  issue         String
   options       OptionQuestion[]
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @updatedAt

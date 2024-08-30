@@ -1,4 +1,6 @@
 import NewAreaForm from "@/components/admin/curriculum/NewAreaForm"
+import { middlewareSession} from "@/middlewares/AuthServerSession"
+import { authOptions } from "@/middlewares/AuthOptions"
 import {
   Card,
   CardContent,
@@ -7,7 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-function NewAreaPage() {
+async function NewAreaPage() {
+  await middlewareSession(authOptions)
   return (
     <main className="flex justify-center items-center w-full mt-10">
     <Card className="w-full max-w-sm sm:max-w-xl m-1">

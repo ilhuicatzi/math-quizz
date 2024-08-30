@@ -39,23 +39,3 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET(request: Request) {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session)
-      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-
-    const areas = await prisma.curriculum.findMany({
-      where: {
-        adminId: parseInt(session.user.id),
-      },
-    });
-    return NextResponse.json(areas, { status: 200 });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { error: "Error al obtener las áreas" },
-      { status: 500 }
-    );
-  }
-}
