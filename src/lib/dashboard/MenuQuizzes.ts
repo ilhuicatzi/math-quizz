@@ -4,7 +4,7 @@ export const MenuQuizzes = [
       id: "aritmetica",
       area: "Aritmética",
       abstract:
-        "Auquí encontrarás temas relacionados con operaciones básicas con números enteros y fraccionarios, así como conceptos de proporcionalidad y porcentajes.",
+        "Aquí encontrarás temas relacionados con operaciones básicas con números enteros y fraccionarios, así como conceptos de proporcionalidad y porcentajes.",
       quizzesTopic: [
         {
           id: "1.1",

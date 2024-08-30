@@ -40,7 +40,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
-          <Toaster />
+          <Toaster richColors />
         </ThemeProvider>
         </SessionContexProvider>
       </body>
