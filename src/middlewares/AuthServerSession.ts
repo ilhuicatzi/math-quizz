@@ -8,4 +8,5 @@ export async function middlewareSession(authOptions: AuthOptions) {
     const session = await getServerSession(authOptions)
     if (!session) redirect('/auth/signin')
     if (!session.user.isAdmin) redirect('/pages/user')
-}
+    return session
+}   

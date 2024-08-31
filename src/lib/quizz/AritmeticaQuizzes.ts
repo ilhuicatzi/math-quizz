@@ -51,10 +51,10 @@ export const SumaFracciones = [
         description:
             "¿Cuál es la suma de $ \\dfrac{1}{4} + \\dfrac{1}{5} $?",
         options: [
-            { id: "3-r1", value: "$ \\dfrac{9}{20} $", item: "A", color: "bg-teal-600" },
-            { id: "3-r2", value: "$ \\dfrac{2}{9} $", item: "B", color: "bg-rose-600" },
-            { id: "3-r3", value: "$ \\dfrac{1}{9} $", item: "C", color: "bg-violet-600" },
-            { id: "3-r4", value: "$ \\dfrac{2}{20} $", item: "D", color: "bg-orange-600" },
+            { id: "3-r1", value: " $\\dfrac{9}{20}$ ", item: "A", color: "bg-teal-600" },
+            { id: "3-r2", value: " $\\dfrac{2}{9}$ ", item: "B", color: "bg-rose-600" },
+            { id: "3-r3", value: " $\\dfrac{1}{9}$ ", item: "C", color: "bg-violet-600" },
+            { id: "3-r4", value: " $\\dfrac{2}{20}$ ", item: "D", color: "bg-orange-600" },
         ],
         correctAnswer: "3-r1",
     },

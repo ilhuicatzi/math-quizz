@@ -14,43 +14,51 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-async function loadQuestions() {
+async function loadOptions() {
   const session = await getServerSession(authOptions)
   if (!session) return null
   try {
-    const questions = await prisma.questionTopic.findMany()
-    return questions
+    const options = await prisma.optionQuestion.findMany()
+    return options
   } catch (error) {
     console.log(error)
   }
 }
 
-async function QuestionsViewPage() {
+async function OptionViewPage() {
   await middlewareSession(authOptions)
-  const questions = await loadQuestions()
+  const options = await loadOptions()
+  console.log(options)
   return (
     <main className="flex flex-col place-items-center mt-28">
-      <h1 className="text-2xl font-bold">Lista de preguntas</h1>
+      <h1 className="text-2xl font-bold">Opciones a las preguntas</h1>
       <section className="flex mt-10 w-full px-16">
       <Table>
       <TableHeader>
         <TableRow>
           <TableHead>id</TableHead>
-          <TableHead>questionId</TableHead>
-          <TableHead>question</TableHead>
-          <TableHead>issue</TableHead>
-          <TableHead>topicId</TableHead>
+          <TableHead>optionId</TableHead>
+          <TableHead>option</TableHead>
+          <TableHead>color</TableHead>
+          <TableHead>correct</TableHead>
+          <TableHead >questionId</TableHead>
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {questions?.map((item) => (
+        {options?.map((item) => (
           <TableRow key={item.id}>
             <TableCell className="font-medium">{item.id}</TableCell>
+            <TableCell>{item.optionId}</TableCell>
+            <TableCell>{item.option}</TableCell>
+            <TableCell><p className="col-span-2 flex items-center gap-2">
+                  <span
+                    className={`w-4 h-4 rounded-md ${item.color}`}
+                  ></span>
+                  {item.color}
+                </p></TableCell>
+            <TableCell>{item.correct ? "true" : "false"}</TableCell>
             <TableCell>{item.questionId}</TableCell>
-            <TableCell>{item.question}</TableCell>
-            <TableCell>{item.issue}</TableCell>
-            <TableCell>{item.topicId}</TableCell>
             <TableCell className="text-right">
             <div className="flex justify-end items-center gap-3">
               <button className="flex justify-center items-center group rounded-full p-2 hover:bg-background">
@@ -70,5 +78,5 @@ async function QuestionsViewPage() {
   )
 }
 
-export default QuestionsViewPage
+export default OptionViewPage
 

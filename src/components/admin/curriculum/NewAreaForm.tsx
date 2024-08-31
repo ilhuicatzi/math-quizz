@@ -42,7 +42,7 @@ function NewAreaForm() {
   async function onSubmit(data: z.infer<typeof AreaFormSchema>) {
     console.log(data);
     try {
-      const res = await axios.post("/api/admins/curriculum/areas", data);
+      const res = await axios.post("/api/admins/curriculum/area", data);
       console.log(res);
 
       if (res.status === 201) {

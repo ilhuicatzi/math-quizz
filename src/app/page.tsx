@@ -1,5 +1,12 @@
 import Link from "next/link";
-function Home() {
+import { middlewareSession } from "@/middlewares/AuthServerSession";
+import { authOptions } from "@/middlewares/AuthOptions";
+import { redirect } from "next/navigation";
+
+async function Home() {
+  const session= await middlewareSession(authOptions);
+  if (session.user.isAdmin) return redirect('/admins/curriculum');
+
   return (
     <main className="bg-[url('/img/portada.jpg')] absolute w-full h-screen">
       <div className="absolute inset-0 dark:bg-black dark:opacity-60"></div>

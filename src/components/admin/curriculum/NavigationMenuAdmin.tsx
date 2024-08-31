@@ -27,22 +27,10 @@ const components: {
     description: "Crea una nueva área de la curricula.",
   },
   {
-    id: 4,
-    title: "Editar Área",
-    href: "/admins/curriculum/edit/editArea/1",
-    description: "Edita una área de la curricula.",
-  },
-  {
     id: 2,
     title: "Nuevo Tema",
     href: "/admins/curriculum/new/newTopic",
     description: "Crea un nuevo tema de la curricula.",
-  },
-  {
-    id: 5,
-    title: "Editar Tema",
-    href: "/admins/curriculum/edit/editTopic/1",
-    description: "Edita un tema de la curricula.",
   },
   {
     id: 3,
@@ -50,12 +38,11 @@ const components: {
     href: "/admins/curriculum/new/newQuestion",
     description: "Crea una nueva pregunta de la curricula.",
   },
-
   {
-    id: 6,
-    title: "Editar Pregunta",
-    href: "/admins/curriculum/edit/editQuestion/1",
-    description: "Edita una pregunta de la curricula.",
+    id: 4,
+    title: "Ver opciones",
+    href: "/admins/curriculum/views/options",
+    description: "Ver las opciones de las preguntas.",
   },
 ];
 

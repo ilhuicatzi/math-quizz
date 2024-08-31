@@ -1,12 +1,11 @@
 import { middlewareSession } from "@/middlewares/AuthServerSession";
 import { authOptions } from "@/middlewares/AuthOptions";
-import { getServerSession } from "next-auth";
 import prisma from "@/lib/prisma";
 import { CiEdit } from "react-icons/ci";
 import { GoTrash } from "react-icons/go";
 
 async function loadTopics() {
-  const session = await getServerSession(authOptions);
+  const session = await middlewareSession(authOptions);
   if (!session) return null;
   try {
     const res = await prisma.topics.findMany();
@@ -65,10 +64,9 @@ async function TopicViewPage() {
               <div className="grid grid-cols-3 gap-3 mb-4">
                 <p className="font-mono text-right font-semibold">Color:</p>
                 <p className="col-span-2 flex items-center gap-2">
-                  {" "}
                   <span
                     className={`w-4 h-4 rounded-md ${topic.colorTopic}`}
-                  ></span>{" "}
+                  ></span>
                   {topic.colorTopic}
                 </p>
               </div>
